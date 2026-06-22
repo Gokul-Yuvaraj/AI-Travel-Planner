@@ -7,6 +7,21 @@ An AI-powered travel planning web application built using Python and Groq LLM AP
 Live Demo:
 https://ai-travel-planner-0ykd.onrender.com
 
+# AI Travel Planner
+
+## Home Page
+
+![Home Page](screenshots/home.jpeg)
+
+## User Input Form
+
+![Form](screenshots/form.jpeg)
+![Loading](screenshots/loading.jpeg)
+
+## Generated Itinerary
+
+![Itinerary](screenshots/response.jpeg)
+
 ## Features
 
 - Generates travel itineraries
