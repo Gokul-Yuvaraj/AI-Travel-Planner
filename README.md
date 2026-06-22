@@ -21,6 +21,9 @@ https://ai-travel-planner-0ykd.onrender.com
 ## Generated Itinerary
 
 ![Itinerary](screenshots/response.jpeg)
+![Itinerary](screenshots/response2.jpeg)
+![Itinerary](screenshots/response3.jpeg)
+![Itinerary](screenshots/response4.jpeg)
 
 ## Features
 
