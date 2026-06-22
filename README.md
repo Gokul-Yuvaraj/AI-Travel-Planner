@@ -26,3 +26,4 @@ An AI-powered travel planning web application built using Python and Groq LLM AP
 pip install -r requirements.txt
 
 python app.py
+

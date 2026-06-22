@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from groq import Groq
 from dotenv import load_dotenv
 import os
@@ -24,20 +24,34 @@ def plan():
     interests = request.form["interests"]
 
     prompt = f"""
-    Create a {days}-day travel itinerary.
+    Create a beautiful and well-structured {days}-day travel itinerary.
 
     Destination: {destination}
     Budget: {budget}
     Travel Style: {style}
     Interests: {interests}
 
-    Include:
-    - Day-wise itinerary
-    - Places to visit
-    - Food recommendations
-    - Estimated costs
-    - Packing checklist
-    - Travel tips
+    Format the response in HTML.
+
+    Use these sections:
+
+    <h2>🌍 Destination Overview</h2>
+
+    <h2>📅 Day 1</h2>
+
+    <h2>🍜 Food Recommendations</h2>
+
+    <h2>💰 Estimated Budget Breakdown</h2>
+
+    <h2>🎒 Packing Checklist</h2>
+
+    <h2>💡 Travel Tips</h2>
+
+    Return ONLY HTML.
+    Use paragraphs and unordered lists.
+    Do NOT use markdown.
+    Do NOT use **.
+    Do NOT use ```html.
     """
 
     response = client.chat.completions.create(
@@ -52,7 +66,8 @@ def plan():
 
     itinerary = response.choices[0].message.content
 
-    return f"<pre>{itinerary}</pre>"
-
+    return jsonify({
+        "itinerary": itinerary
+    })
 if __name__ == "__main__":
     app.run(debug=False)

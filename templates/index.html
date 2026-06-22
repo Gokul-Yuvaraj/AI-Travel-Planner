@@ -3,6 +3,7 @@
 <head>
     <title>AI Travel Planner</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -52,9 +53,32 @@
     </button>
 
 </form>
-{% if itinerary %}
-    <h2>Your Travel Plan</h2>
-    <pre>{{ itinerary }}</pre>
-{% endif %}
+<div id="result-container">
+    <div id="result"></div>
+</div>
+
+<script>
+document.querySelector("form").addEventListener("submit", async function(e) {
+
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    document.getElementById("result").innerHTML =
+        '<div class="loading">🌍 Generating your travel plan...</div>';
+
+    const response = await fetch("/plan", {
+        method: "POST",
+        body: formData
+    });
+
+    const data = await response.json();
+
+    document.getElementById("result").innerHTML = `
+        <h2>✈️ Your Travel Plan</h2>
+        ${data.itinerary}
+    `;
+});
+</script>
 </body>
 </html>
