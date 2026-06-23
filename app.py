@@ -10,6 +10,7 @@ client = Groq(
     api_key=os.getenv("GROQ_API_KEY")
 )
 
+
 @app.route("/")
 def home():
     return render_template("index.html")
